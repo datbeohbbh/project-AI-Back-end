@@ -5,6 +5,7 @@ const upload_router = express.Router();
 
 const MAGIC = 1211;
 const BASE = 1000000007;
+const extension = '.png';
 
 hash_code = (str) => {
     let hash_ret = 1;
@@ -20,7 +21,7 @@ const storage = multer.diskStorage({
     },
     filename : (request,file,callback) => {
         const unique_suffix = Date.now() + '-' + hash_code(file.fieldname + '-' + Date.now());
-        callback(null,file.fieldname + '-' + unique_suffix);
+        callback(null,file.fieldname + '-' + unique_suffix + extension);
     }
 });
 
