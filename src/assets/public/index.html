@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset = "UTF-8">
+        <title> test project </title>
+        
+    <style>
+        .upload_class {
+            margin : auto;
+            width : 60%;
+            border : 3px solid #73AD21; 
+            padding : 10px;
+        }
+    </style>
+
+    </head>
+    
+    <body>
+        <div class = "upload_class">
+            <form name = "upload_image" action = "/uploads" method = "post" enctype = "multipart/form-data">
+                <input type = "file" name = "image"></input>
+                <input type = "submit" value = "Upload an image"></input>
+            </form>
+        </div>
+    </body>
+</html>
