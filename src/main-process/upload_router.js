@@ -1,27 +1,22 @@
 const express = require('express');
 const multer = require('multer');
+const image_utils = require('./utils/image_utils.js');
 
 const upload_router = express.Router();
 
-const MAGIC = 1211;
-const BASE = 1000000007;
-const extension = '.png';
-
-hash_code = (str) => {
-    let hash_ret = 1;
-    for(let i = 0;i < str.length;++i){
-        hash_ret = (hash_ret * MAGIC + str.charCodeAt(i)) % BASE;
-    }
-    return hash_ret;
-};
 
 const storage = multer.diskStorage({
     destination : (request,file,callback) => {
         callback(null,__dirname + '/uploads');
     },
     filename : (request,file,callback) => {
-        const unique_suffix = Date.now() + '-' + hash_code(file.fieldname + '-' + Date.now());
-        callback(null,file.fieldname + '-' + unique_suffix + extension);
+        const unique_suffix = Date.now() + '-' + image_utils.hash_code(file.originalname + '-' + Date.now());
+        const extension = image_utils.get_extension(file.originalname);
+        if(extension === null || image_utils.validate_extension(extension) === false){
+            callback(new Error('Upload ' + file.originalname + ' fail'));
+        } else {
+            callback(null,file.fieldname + '-' + unique_suffix + '.' + extension);
+        }
     }
 });
 
@@ -35,7 +30,7 @@ upload_router.post('/',upload.single('image'),(request,response) => {
     response.json({
         status : "OK",
         message : "Upload successfully!!",
-        photo_name : request.file.filename
+        image_name : request.file.filename
     });
 });
 

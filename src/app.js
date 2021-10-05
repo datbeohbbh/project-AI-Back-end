@@ -4,6 +4,7 @@ bodyParser = require('body-parser');
 config = require('./config');
 
 upload_router = require('./main-process/upload_router');
+emotion_recognition_router = require('./main-process/emotion_recognition_router');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.get('/',(request,response) => {
 });
 
 app.use('/uploads',upload_router);
+app.use('/emotions',emotion_recognition_router);
 
 app.listen(config.port,config.host,() => {
     console.log(`Server running at http://${config.host}:${config.port}/`);
