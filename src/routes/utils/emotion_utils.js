@@ -12,7 +12,7 @@ const precise = (value) => {
 };
 
 var tfmodel = null;
-(async function(){
+(async () => {
     try{
         tfmodel = await tf.loadLayersModel('file://' + model_path);
     } catch(e){
@@ -20,7 +20,7 @@ var tfmodel = null;
     }
 })();
 
-exports.predict_emotion = async function(image){
+exports.predict_emotion = async (image) => {
     let flat_image = [];
     for(let channel = 0;channel < config.CHANNELS;++channel){
         for(let h = 0;h < config.IMG_HEIGHT;++h){

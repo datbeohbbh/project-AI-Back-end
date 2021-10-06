@@ -31,7 +31,8 @@ method = {
                 
                 response.status(200).json({
                     status : 'OK',
-                    emotions_from_image : emotions_dict
+                    emotions_from_image : emotions_dict,
+                    image_display : `${config.host}:${config.port}/images/${request.params.image}`
                 });
             } catch(err){
                 next(err);
