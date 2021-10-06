@@ -3,8 +3,8 @@ morgan = require('morgan');
 bodyParser = require('body-parser');
 config = require('./config');
 
-upload_router = require('./main-process/upload_router');
-emotion_recognition_router = require('./main-process/emotion_recognition_router');
+upload_router = require('./routes/upload_router');
+emotion_recognition_router = require('./routes/emotion_recognition_router');
 
 const app = express();
 
