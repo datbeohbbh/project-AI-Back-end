@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 
 app.use(express.static(path.join(__dirname,'/assets/public')));
-app.use(express.static(path.join(__dirname,'/routes')));
+app.use('/uploaded',express.static(path.join(__dirname,'/routes/uploads')));
 
 app.get('/',(request,response) => {
     response.redirect('index.html');

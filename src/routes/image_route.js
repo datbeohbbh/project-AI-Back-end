@@ -6,7 +6,7 @@ const image_route = express.Router();
 const build_html = (image_name) => {
     var str = '';
     for(let i = 0;i < image_name.length;++i){
-        str += `<h3> ${image_name[i]} </h3> \n <img src = "/uploads/${image_name[i]}" \n <br> <br>`;
+        str += `<h3> ${image_name[i]} </h3> \n <img src = "/uploaded/${image_name[i]}" \n <br> <br>`;
     }
     var html = `
         <!DOCTYPE html>
