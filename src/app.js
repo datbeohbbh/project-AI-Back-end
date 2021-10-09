@@ -13,9 +13,9 @@ const app = express();
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
-
 app.use(express.static(path.join(__dirname,'/assets/public')));
 app.use('/uploaded',express.static(path.join(__dirname,'/routes/uploads')));
+app.use('/detected',express.static(path.join(__dirname,'/routes/detected')));
 
 app.get('/',(request,response) => {
     response.redirect('index.html');

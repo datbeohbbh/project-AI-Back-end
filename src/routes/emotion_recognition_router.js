@@ -6,10 +6,10 @@ const config = require('../config');
 
 const emotion_recognition_router = express.Router();
 
-method = {
+const method = {
     GET : async (request,response,next) => {
         response.setHeader('Content-Type','application/json'); 
-        if(image_utils.contains(request.params.image) === true){
+        if(image_utils.contains('uploads',request.params.image) === true){
             try{
                 const faces = await face_utils.get_all_faces(request.params.image);
                 const faces_dict = {};
@@ -21,18 +21,28 @@ method = {
                 }
                 
                 const emotions_dict = {};
+                const content = [];
                 for(let i = 0;i < faces.length;++i){
                     let pixel = faces_dict[i].pixel_gray_scale_image; /// [][]
                     let emotion_predict = await emotion_utils.predict_emotion(pixel);
+                    let cur_max = -1;
+                    for(const [emotion,percentage] of Object.entries(emotion_predict)){
+                        if(cur_max < percentage){
+                            content[i] = emotion;
+                            cur_max = percentage;
+                        }
+                    }
                     emotions_dict[i] = {
                         emotion : emotion_predict
                     };
                 }
                 
+                await face_utils.draw_detected_faces(request.params.image,content);
+                
                 response.status(200).json({
                     status : 'OK',
                     emotions_from_image : emotions_dict,
-                    image_display : `${config.host}:${config.port}/images/${request.params.image}`
+                    image_display : `${config.host}:${config.port}/images/detected/${request.params.image}`
                 });
             } catch(err){
                 next(err);

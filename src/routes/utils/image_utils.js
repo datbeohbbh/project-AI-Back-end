@@ -4,7 +4,10 @@ const path = require('path');
 const EXTENSIONS = ['jpeg','jpg','png','gif','psd','pdf','eps','ai','indd','raw'];
 const MAGIC = 1211;
 const BASE = 1000000007;
-const path_to_upload = path.resolve(__dirname,'../uploads');
+
+const path_to_dir = (dir) => {
+    return path.resolve(__dirname,`../${dir}`);
+};
 
 exports.hash_code = (str) => {
     let hash_ret = 1;
@@ -32,12 +35,16 @@ exports.validate_extension = (str) => {
     return (EXTENSIONS.indexOf(str) === -1 ? false : true);
 };
 
-exports.get_image_list = () => {
-    const images = fs.readdirSync(path_to_upload);
+exports.get_image_list = (dir) => {
+    const images = fs.readdirSync(path_to_dir(dir));
     return images;
 };
 
-exports.contains = (image) => {
-    const images = fs.readdirSync(path_to_upload);
+exports.contains = (dir,image) => {
+    const images = fs.readdirSync(path_to_dir(dir));
     return (images.indexOf(image) === -1 ? false : true);
+};
+
+exports.path_to_image = (dir,image) => {
+    return path_to_dir(dir) + `/${image}`;
 };
