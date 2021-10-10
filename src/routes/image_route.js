@@ -38,8 +38,7 @@ image_route.get('/uploaded/:image',(request,response) => {
         } else {
             response.setHeader('Content-Type','application/json');
             response.status(404).json({
-                status : 'Fail',
-                message : `Not found ${image_name}`
+                msg : `Not found ${image_name}`
             });
         }
     });
@@ -60,8 +59,7 @@ image_route.get('/detected/:image',(request,response) => {
         } else {
             response.setHeader('Content-Type','application/json');
             response.status(404).json({
-                status : 'Fail',
-                message : `Not found ${image_name}`
+                msg : `Not found ${image_name}`
             });
         }
     });

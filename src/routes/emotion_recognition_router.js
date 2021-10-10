@@ -22,16 +22,19 @@ const method = {
                 
                 const emotions_dict = {};
                 const content = [];
+
                 for(let i = 0;i < faces.length;++i){
                     let pixel = faces_dict[i].pixel_gray_scale_image; /// [][]
                     let emotion_predict = await emotion_utils.predict_emotion(pixel);
                     let cur_max = -1;
+
                     for(const [emotion,percentage] of Object.entries(emotion_predict)){
                         if(cur_max < percentage){
                             content[i] = emotion;
                             cur_max = percentage;
                         }
                     }
+
                     emotions_dict[i] = {
                         emotion : emotion_predict
                     };
@@ -40,7 +43,6 @@ const method = {
                 await face_utils.draw_detected_faces(request.params.image,content);
                 
                 response.status(200).json({
-                    status : 'OK',
                     emotions_from_image : emotions_dict,
                     image_display : `${config.host}:${config.port}/images/detected/${request.params.image}`
                 });
@@ -49,7 +51,7 @@ const method = {
             }
         } else {
             response.status(404).json({
-                status : `Not found an image with name: ${request.params.image}`
+                msg : `Not found an image with name: ${request.params.image}`
             });
         }
     }

@@ -27,8 +27,7 @@ const upload = multer({
 upload_router.post('/',upload.single('image'),(request,response) => {
     response.setHeader('Content-Type','application/json'); 
     response.status(200).json({
-        status : "OK",
-        message : "Upload successfully!!",
+        msg : "Upload successfully!!",
         image_name : request.file.filename
     });
 });

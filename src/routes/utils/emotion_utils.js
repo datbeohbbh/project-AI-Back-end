@@ -29,12 +29,14 @@ exports.predict_emotion = async (image) => {
             }
         }
     }
+
     let input = tfCore.tensor(flat_image,[1,config.IMG_HEIGHT,config.IMG_WIDTH,config.CHANNELS]);
     let predict_result = tfmodel.predict(input);
     let emotion_percentage = await predict_result.array();
     let emotion_ret = {};
-    for(let i = 0;i < emotion.length;++i){
-        emotion_ret[emotion[i]] = Number.parseFloat(precise(emotion_percentage[0][i] * 100));
-    }
+
+    emotion_percentage[0].forEach((cur_value,index) => {
+        emotion_ret[emotion[index]] = Number.parseFloat(precise(cur_value * 100));
+    });
     return emotion_ret;
 };
