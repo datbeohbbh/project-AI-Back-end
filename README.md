@@ -4,7 +4,7 @@
 - ``npm start``
 
 ### Endpoints:
-\
+
 **Upload an image:**
 
 - **POST**  ``/uploads``
