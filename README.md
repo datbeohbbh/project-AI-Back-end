@@ -1,11 +1,14 @@
 # project-AI-Back-end
 
-### Run project: 
+### Run project
 - ``npm start``
 
-### Endpoints:
+### Host
+- **Host** ``localhost:8000``
 
-**Upload an image:**
+### Endpoints
+
+**Upload an image**
 
 - **POST**  ``/uploads``
 
@@ -42,31 +45,35 @@
 }
 ```
 
-**Get images**
+**Get all images**
 - **GET** ``/images/all/uploaded``
 - **Response**
 ```text
 Status: 200 OK
 ```
 
+**Get an image with name**
 - **GET** ``/images/uploaded/{image_name}``
 - **Response** 
 ```text
 Status: 200 OK
 ```
 
+**Get all detected faces**
 - **GET** ``/images/all/detected``
 - **Response**
 ```text
 Status: 200 OK
 ```
 
+**Get a detected face with name**
 - **GET** ``/images/detected/{image_name}``
 - **Response** 
 ```text
 Status: 200 OK
 ```
 
+**Download detected image**
 - **GET** ``/images/detected/{image_name}/download``
 - **Response**
 ```text
