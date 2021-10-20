@@ -31,17 +31,39 @@
     "emotions_from_image": {
         "0": {
             "emotion": {
-                "angry": 14.878,
-                "disgust": 2.8379,
-                "fear": 19.677,
-                "happy": 21.754,
-                "sad": 14.177,
-                "surprise": 12.584,
-                "neutral": 14.093
+                "angry": 13.421,
+                "disgust": 0.76376,
+                "fear": 11.541,
+                "happy": 30.056,
+                "sad": 14.36,
+                "surprise": 3.7882,
+                "neutral": 26.07
+            }
+        },
+        "1": {
+            "emotion": {
+                "angry": 11.311,
+                "disgust": 1.2371,
+                "fear": 19.577,
+                "happy": 15.466,
+                "sad": 25.96,
+                "surprise": 6.2799,
+                "neutral": 20.17
+            }
+        },
+        "2": {
+            "emotion": {
+                "angry": 14.66,
+                "disgust": 1.057,
+                "fear": 13.679,
+                "happy": 24.062,
+                "sad": 17.104,
+                "surprise": 4.8249,
+                "neutral": 24.612
             }
         }
     },
-    "image_display": "localhost:8000/images/detected/image-1633454111387-151761211.jpg"
+    "image_display": "localhost:8000/images/detected/image-1633677666773-834733804.jpg"
 }
 ```
 
