@@ -1,9 +1,9 @@
 # project-AI-Back-end
 
-##### Run project: 
+### Run project: 
 - ``npm start``
 
-##### Endpoints:
+### Endpoints:
 \
 **Upload an image:**
 
