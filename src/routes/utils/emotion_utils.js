@@ -30,9 +30,10 @@ exports.predict_emotion = async (image) => {
         }
     }
 
-    let input = tfCore.tensor(flat_image,[1,config.IMG_HEIGHT,config.IMG_WIDTH,config.CHANNELS]);
+    let input = tfCore.tensor(flat_image,[1,config.IMG_HEIGHT,config.IMG_WIDTH,config.CHANNELS],'float32');
     let predict_result = tfmodel.predict(input);
     let emotion_percentage = await predict_result.array();
+    console.log(emotion_percentage);
     let emotion_ret = {};
 
     emotion_percentage[0].forEach((cur_value,index) => {
