@@ -60,6 +60,6 @@ const run = async (test) => {
 
 //const test = 'image-1633531530752-350309716.jpg';
 //const test = 'surprised.jpg';
-const test = 'image-1633793470679-665045798.jpg';
+const test = 'image-1633677666773-834733804.jpg';
 run(test);
 
