@@ -61,10 +61,7 @@ const { face_detection_net,face_detection_options } = require('./commons/face_de
 
 const model_path = path.resolve(__dirname,'../../assets/model/weights');
 
-const emotion = ['angry', 'disgust', 'fear', 'happy', 'sad','surprise', 'neutral'];
-
 const image_utils = require('./image_utils');
-
 
 (async () => {
     try{
@@ -96,7 +93,7 @@ exports.predict_emotion = async (from,image) => {
     if(results.length === 0){
         throw new Error('Failed to detect faces');
     }
-
+    
     var expressions = [];
     results.forEach((res) => {
         var e = {};
