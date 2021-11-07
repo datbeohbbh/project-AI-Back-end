@@ -21,7 +21,7 @@ const model_path = path.resolve(__dirname,'../../assets/model/weights');
 
 const faceDetectionNet = faceapi.nets.ssdMobilenetv1;
 
-const minConfidence = 0.5;
+const minConfidence = 0.4;
 
 const inputSize = 408;
 
@@ -49,6 +49,15 @@ const run = async (test) => {
   const results = await faceapi.detectAllFaces(img, faceDetectionOptions)
       .withFaceLandmarks()
       .withFaceExpressions()
+
+  //console.log(results);
+
+  for(let i = 0;i < results.length;++i){
+      console.log(i); //,results[i].expressions.neutral);
+      Object.entries(results[i].expressions).forEach(([key,value]) => {
+          console.log(`${key} ${value}`);
+      });
+  }
 
   const out = faceapi.createCanvasFromMedia(img);
   faceapi.draw.drawDetections(out, results.map(res => res.detection))

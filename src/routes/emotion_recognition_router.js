@@ -6,6 +6,7 @@ const config = require('../config');
 
 const emotion_recognition_router = express.Router();
 
+/*
 const method = {
     GET : async (request,response,next) => {
         response.setHeader('Content-Type','application/json'); 
@@ -45,6 +46,32 @@ const method = {
                 response.status(200).json({
                     emotions_from_image : emotions_dict,
                     image_display : `${config.host}:${config.port}/images/detected/${request.params.image}`
+                });
+            } catch(err){
+                next(err);
+            }
+        } else {
+            response.status(404).json({
+                msg : `Not found an image with name: ${request.params.image}`
+            });
+        }
+    }
+};
+*/
+
+const method = {
+    GET : async (request,response,next) => {
+        response.setHeader('Content-Type','application/json'); 
+        if(image_utils.contains('uploads',request.params.image) === true){
+            try{
+
+                const image = request.params.image;
+                
+                const expressions = await emotion_utils.predict_emotion('uploads',image);
+                
+                response.status(200).json({
+                    emotions : expressions,
+                    image_display : `${config.host}:${config.port}/images/detected/${image}`
                 });
             } catch(err){
                 next(err);

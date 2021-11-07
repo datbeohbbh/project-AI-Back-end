@@ -48,3 +48,10 @@ exports.contains = (dir,image) => {
 exports.path_to_image = (dir,image) => {
     return path_to_dir(dir) + `/${image}`;
 };
+
+exports.save_file = (dir,image,buffer) => {
+    if(!fs.existsSync(path_to_dir(dir))){
+        throw new Error(`No such directory name ${dir}`);
+    }
+    fs.writeFileSync(path.resolve(path_to_dir(dir),image),buffer);
+};
