@@ -1,5 +1,10 @@
 # project-AI-Back-end
 
+### Dependencies
+- ``face-api.js``
+- ``@tensorflow/tfjs-core@1.7.0``
+- ``@tensorflow/tfjs-node@1.7.0``
+
 ### Run project
 - ``npm start``
 

@@ -46,6 +46,8 @@ exports.predict_emotion = async (image) => {
 
 // ======================================================================================= //
 
+const tfjs = require('@tensorflow/tfjs-node');
+const tfcore = require('@tensorflow/tfjs-core');
 
 const path = require('path');
 

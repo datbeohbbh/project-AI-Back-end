@@ -1,3 +1,5 @@
+const tfjs = require('@tensorflow/tfjs-node');
+
 const faceapi = require('face-api.js');
 const canvas = require('canvas');
 
@@ -52,16 +54,20 @@ const run = async (test) => {
 
   //console.log(results);
 
+
   for(let i = 0;i < results.length;++i){
+      /*
       console.log(i); //,results[i].expressions.neutral);
       Object.entries(results[i].expressions).forEach(([key,value]) => {
           console.log(`${key} ${value}`);
       });
+      */
   }
 
+
   const out = faceapi.createCanvasFromMedia(img);
-  faceapi.draw.drawDetections(out, results.map(res => res.detection))
-  faceapi.draw.drawFaceExpressions(out, results)
+  faceapi.draw.drawDetections(out, results.map(res => res.detection));
+  faceapi.draw.drawFaceExpressions(out, results);
 
   saveFile('faceExpressionRecognition.jpg', out.toBuffer('image/jpeg'))
   console.log('done, saved results to out/faceExpressionRecognition.jpg')
