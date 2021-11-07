@@ -83,7 +83,7 @@ const draw = (dir,image,results,name) => {
     face_api.draw.drawDetections(out,results.map(res => res.detection));
     face_api.draw.drawFaceExpressions(out,results);
     
-    image_utils.save_file(dir,`${name}.jpg`,out.toBuffer('image/jpeg'));
+    image_utils.save_file(dir,name,out.toBuffer('image/jpeg'));
 };
 
 exports.predict_emotion = async (from,image) => {
@@ -106,7 +106,7 @@ exports.predict_emotion = async (from,image) => {
         expressions.push(e);
     });
     
-    draw('detected',img,results,image_utils.get_name(image));
+    draw('detected',img,results,image);
     
     return expressions;
 };
