@@ -4,16 +4,17 @@ const face_detection_net = face_api.nets.ssdMobilenetv1;
 exports.face_detection_net = face_detection_net;
 
 // SsdMobilenetv1
-const min_confidence = 0.4;
+const minConfidence = 0.4;
 
 // TinyFaceDetectorOptions
-const input_size = 408;
-const score_threshold = 0.5;
+const inputSize = 408;
+
+const scoreThreshold = 0.5;
 
 const get_face_detector_options = (net) => {
     return net === face_api.nets.ssdMobilenetv1
-    ? new face_api.SsdMobilenetv1Options( { min_confidence })
-    : new face_api.TinyFaceDetectorOptions( {input_size, score_threshold });
+    ? new face_api.SsdMobilenetv1Options( { minConfidence })
+    : new face_api.TinyFaceDetectorOptions( {inputSize, scoreThreshold});
 };
 
 exports.face_detection_options = get_face_detector_options(face_detection_net);

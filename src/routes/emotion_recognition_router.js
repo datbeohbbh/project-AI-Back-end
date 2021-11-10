@@ -71,7 +71,7 @@ const method = {
                 
                 response.status(200).json({
                     emotions : expressions,
-                    image_display : `${config.host}:${config.port}/images/detected/${image}`
+                    image_name : image,
                 });
             } catch(err){
                 next(err);

@@ -49,13 +49,14 @@ exports.predict_emotion = async (image) => {
 const tfjs = require('@tensorflow/tfjs-node');
 const tfcore = require('@tensorflow/tfjs-core');
 
-const path = require('path');
-
 const face_api = require('face-api.js');
 
 const canvas = require('canvas');
 const { Canvas, Image, ImageData } = canvas;
 face_api.env.monkeyPatch( { Canvas, Image, ImageData } );
+
+const fs = require('fs');
+const path = require('path');
 
 const { face_detection_net,face_detection_options } = require('./commons/face_detection');
 
@@ -69,6 +70,7 @@ const image_utils = require('./image_utils');
         await face_detection_net.loadFromDisk(model_path);
         await face_api.nets.faceLandmark68Net.loadFromDisk(model_path);
         await face_api.nets.faceExpressionNet.loadFromDisk(model_path);
+        console.log('Load complete!!');
     } catch(e){
         throw e;
     }
@@ -93,6 +95,8 @@ exports.predict_emotion = async (from,image) => {
     if(results.length === 0){
         throw new Error('Failed to detect faces');
     }
+    
+    console.log(results.length);
     
     var expressions = [];
     results.forEach((res) => {

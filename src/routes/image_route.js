@@ -64,4 +64,16 @@ image_route.get('/detected/:image',(request,response) => {
         }
     });
 
+image_route.post('/detected/download/:image',(request,response) => {
+    const image_name = request.params.image;
+    if(image_utils.contains('detected',image_name) === true){
+        response.download(image_utils.path_to_image('detected',image_name));
+    } else {
+        response.setHeader('Content-Type','application/json');
+        response.status(404).json({
+            msg : `Not found ${image_name}`
+        });
+    }
+});
+
 module.exports = image_route;

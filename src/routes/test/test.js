@@ -52,7 +52,7 @@ const run = async (test) => {
       .withFaceLandmarks()
       .withFaceExpressions()
 
-  //console.log(results);
+  console.log(results.length);
 
 
   for(let i = 0;i < results.length;++i){
