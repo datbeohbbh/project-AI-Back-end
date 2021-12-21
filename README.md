@@ -122,7 +122,7 @@ Status: 200 OK
 ```
 
 **Download detected image**
-- **POST** ``/images/detected/download/{image_name}``
+- **GET** ``/images/detected/download/{image_name}``
 - **Response**
 ```text
 Status: 200 OK

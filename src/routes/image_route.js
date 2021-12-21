@@ -64,7 +64,7 @@ image_route.get('/detected/:image',(request,response) => {
         }
     });
 
-image_route.post('/detected/download/:image',(request,response) => {
+image_route.get('/detected/download/:image',(request,response) => {
     const image_name = request.params.image;
     if(image_utils.contains('detected',image_name) === true){
         response.download(image_utils.path_to_image('detected',image_name));

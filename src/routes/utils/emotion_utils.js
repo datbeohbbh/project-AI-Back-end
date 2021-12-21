@@ -63,6 +63,7 @@ const { face_detection_net,face_detection_options } = require('./commons/face_de
 const model_path = path.resolve(__dirname,'../../assets/model/weights');
 
 const image_utils = require('./image_utils');
+const {Box} = require("face-api.js");
 
 (async () => {
     try{
@@ -78,8 +79,16 @@ const image_utils = require('./image_utils');
 
 const draw = (dir,image,results,name) => {
     const out = face_api.createCanvasFromMedia(image);
-    
-    face_api.draw.drawDetections(out,results.map(res => res.detection));
+
+    results.map(res => {
+        const drawBox = new face_api.draw.DrawBox(new Box({
+            x: res.detection.box.x,
+            y: res.detection.box.y,
+            width: res.detection.box.width,
+            height: res.detection.box.height
+        }), {lineWidth: 50});
+        drawBox.draw(out);
+    });
     face_api.draw.drawFaceExpressions(out,results);
     
     image_utils.save_file(dir,name,out.toBuffer('image/jpeg'));

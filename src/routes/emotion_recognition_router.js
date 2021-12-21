@@ -1,8 +1,6 @@
 const express = require('express');
 const image_utils = require('./utils/image_utils');
-const face_utils = require('./utils/face_utils');
 const emotion_utils = require('./utils/emotion_utils');
-const config = require('../config');
 
 const emotion_recognition_router = express.Router();
 
