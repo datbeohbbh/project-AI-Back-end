@@ -1,5 +1,3 @@
-const tfjs = require('@tensorflow/tfjs-node');
-
 const face_api = require('face-api.js');
 
 const canvas = require('canvas');
